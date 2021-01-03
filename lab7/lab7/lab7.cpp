@@ -55,6 +55,7 @@ private:
 				left->DeleteAfter();
 			}
 			delete left;
+			left = NULL;
 		}
 
 		if (right != NULL)
@@ -64,6 +65,7 @@ private:
 				right->DeleteAfter();
 			}
 			delete right;
+			right = NULL;
 		}
 	}
 
@@ -84,6 +86,14 @@ public:
 		info = Info;
 		root = this;
 	}
+
+	/*BinariTree(const BinariTree<T>& copy)
+	{
+		info = copy.info;
+		root = copy.root;
+		right = copy.right;
+		left = copy.left;
+	}*/
 
 	//ready
 	void AddElem(T neweleminfo)
@@ -134,6 +144,7 @@ public:
 				right->DeleteAfter();
 
 				delete right;
+				right = NULL;
 			}
 			else
 			{
@@ -151,6 +162,7 @@ public:
 				left->DeleteAfter();
 
 				delete left;
+				left = NULL;
 			}
 			else
 			{
@@ -245,10 +257,10 @@ public:
 		return *this;
 	}
 
-	//~BinariTree()
-	//{
-	//	DeleteAfter();
-	//}
+	/*~BinariTree()
+	{
+		DeleteAfter();
+	}*/
 };
 template <class T>
 std::ostream& operator<< (std::ostream &os, const BinariTree<T> tree)
@@ -287,6 +299,9 @@ int main()
 	cout << root << endl;
 	root.Print();
 	root.Average();
+
+	root.DeleteElem(3);
+	root.Print();
 
 	root += 8;
 	root += 45;
